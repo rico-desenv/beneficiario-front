@@ -1,0 +1,25 @@
+.moldura {
+    margin: 10px;         
+}
+
+.label {
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+.linha {
+    display: flex; 
+    justify-content: center; 
+    margin-top: 5px;
+}
+
+.linha-direita {
+    display: flex; 
+    justify-content: right; 
+    margin-top: 5px;
+}
+
+.alerta {
+    color: red;
+}

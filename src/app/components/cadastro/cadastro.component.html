@@ -1,0 +1,163 @@
+<div class="moldura">
+    <div class="linha">
+        <h3> Cadastro de Beneficiários</h3>
+    </div>
+
+    <div class="linha">        
+        <div class="col-md-1">
+            <button class="btn btn-primary" (click)="incluir()" style="margin-left: 4px;">
+                Incluir
+            </button>
+        </div>        
+        <div class="col-md-6"></div>
+    </div>
+
+    <div *ngIf="loading" class="loader">Loading...</div>
+
+    <div class="linha">
+        <table width="90%" border="1">
+            <thead>
+                <tr>
+                    <th style="width: 5px;text-align: left;">Id</th>
+                    <th style="width: 75px;text-align: left;">Nome</th>
+                    <th style="width: 15px;text-align: left;">Telefone</th>
+                    <th style="width: 25px;text-align: left;">Data de Nascimento</th>
+                    <th style="width: 5px;text-align: left;"></th>
+                    <th style="width: 5px;text-align: left;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of beneficiarios" [ngClass]="selecionada(item.id)">
+                    <td style="width: 5px;">{{item.id}}</td>
+                    <td style="width: 75px;">{{item.nome}}</td>
+                    <td style="width: 15px;">{{item.telefone}}</td>
+                    <td style="width: 25px;">{{item.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+                    <td style="width: 5px;cursor: pointer;" (click)="editar(item)"><B>Editar</B></td>
+                    <td style="width: 5px;cursor: pointer;" (click)="excluir(item.id, item.nome)"><B>Excluir</B></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="showDetalhe">
+
+    <div class="detalhe-moldura">
+        <div class="linha">
+            <table width="90%">
+                <thead>
+                    <tr>
+                        <th style="width: 75px;text-align: left;">
+                            <label>Nome</label>
+                        </th>
+                        <th style="width: 35px;text-align: left;">
+                            <label>Telefone</label>
+                        </th>
+                        <th style="width: 35px;text-align: left;">
+                            <label>Data</label>
+                        </th>                            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" name="nome" id="nome" required [(ngModel)]="beneficiario.nome" placeholder="Digite o nome" 
+                                maxlength="200">
+                        </td>
+                        <td>
+                            <input type="text" name="telefone" id="telefone" required [(ngModel)]="beneficiario.telefone" placeholder="Digite o telefone" 
+                                maxlength="30">
+                        </td>
+                        <td>
+                            <input type="date" name="dataNascimento" id="dataNascimento" [(ngModel)]="beneficiario.dataNascimento">
+                        </td>                                                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="linha">
+            <div style="display: flex;justify-content: end;">
+                <button type="button" (click)="salvar()" class="btn btn-primary">Salvar</button>
+            </div>        
+        </div>            
+    </div>    
+
+    <div class="linha">
+        <h3>Documentos</h3>
+    </div>
+
+    <div class="linha">
+        <table width="90%" border="1">
+            <thead>
+                <tr>
+                    <th style="width: 5px;text-align: left;">Id</th>
+                    <th style="width: 75px;text-align: left;">Tipo</th>
+                    <th style="width: 15px;text-align: left;">Descrição</th>
+                    <th style="width: 5px;text-align: left;"></th>
+                    <th style="width: 5px;text-align: left;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let item of beneficiario.documentos">
+                    <td style="width: 5px;">{{item.id}}</td>
+                    <td style="width: 75px;">{{item.tipoDocumento}}</td>
+                    <td style="width: 15px;">{{item.descricao}}</td>
+                    <td style="width: 5px;"></td>
+                    <td style="width: 5px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>        
+
+    <div class="linha">        
+        <div class="col-md-1">
+            <button class="btn btn-primary" (click)="incluirDoc()" style="margin-left: 4px;">
+                Incluir Documento
+            </button>
+        </div>        
+        <div class="col-md-6"></div>
+    </div>
+
+</div>
+
+
+<div *ngIf="showDetalheDoc">
+
+    <div class="detalhe-moldura">
+        <div class="linha">
+            <table width="90%">
+                <thead>
+                    <tr>
+                        <th style="width: 75px;text-align: left;">
+                            <label>Tipo</label>
+                        </th>
+                        <th style="width: 85px;text-align: left;">
+                            <label>Descrição</label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select [(ngModel)]="documento.tipoDocumento">
+                                <option value="1">RG</option>
+                                <option value="2">CPF</option>
+                                <option value="3">CNH</option>
+                                <option value="4">PASSAPORTE</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="descricao" id="descricao" required [(ngModel)]="documento.descricao" placeholder="Digite a descrição" 
+                                maxlength="60">
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="linha">
+            <div style="display: flex;justify-content: end;">
+                <button type="button" (click)="salvarDoc()" class="btn btn-primary">Salvar Documento</button>
+            </div>        
+        </div>            
+    </div>    
+</div>    

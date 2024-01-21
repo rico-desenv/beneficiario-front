@@ -1,0 +1,24 @@
+<div class="linha">
+    <h4>Administração</h4>
+</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="linha">
+        <label for="username">Email</label>
+        <input type="text" formControlName="username" class="form-control" style="width: 16%; margin-left: 10px;"/>
+    </div>
+    <div class="linha">
+        <label for="password">Senha</label>
+        <input type="password" formControlName="password" class="form-control" style="width: 16%; margin-left: 10px;"/>
+    </div>
+
+    <div class="linha alerta">
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </div>
+
+    <div class="linha">
+        <button class="btn btn-primary"
+            style="margin-top: 15px;">
+            Login
+        </button>
+    </div>
+</form>
